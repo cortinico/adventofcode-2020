@@ -7,6 +7,7 @@ fun main() {
         numberSet.forEachIndexed { index2, num2 ->
             if (index1 != index2 && 2020 - num1 - num2 in numberSet) {
                 println(num1 * num2 * (2020 - num1 - num2))
+                return
             }
         }
     }

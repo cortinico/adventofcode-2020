@@ -13,7 +13,7 @@ fun main() {
         }
     }
     input.subList(start, end + 1).apply {
-        println(min()!! + max()!!)
+        println(minOrNull()!! + maxOrNull()!!)
     }
 }
 

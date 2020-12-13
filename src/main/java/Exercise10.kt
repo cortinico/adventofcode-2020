@@ -10,7 +10,6 @@ fun main() {
     var count3 = 0
 
     for (i in 0 until input.size - 1) {
-        println(input[i])
         when (input[i]) {
             input[i + 1] - 1 -> {
                 count1++
