@@ -1,5 +1,6 @@
 fun main() {
-    val input = object {}.javaClass.getResource("input-15.txt").readText().split(",").map(String::toInt)
+    val input =
+        object {}.javaClass.getResource("input-15.txt").readText().split(",").map(String::toInt)
 
     val map = mutableMapOf<Int, Pair<Int, Int>>()
 

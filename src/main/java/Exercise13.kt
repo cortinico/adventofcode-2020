@@ -1,6 +1,5 @@
 fun main() {
-    val input = object {}.javaClass.getResource("input-13.txt").readText()
-        .split("\n")
+    val input = object {}.javaClass.getResource("input-13.txt").readText().split("\n")
 
     val earliestDeparture: Int = input[0].toInt()
     val busses = input[1].split(",").filter { it != "x" }.map(String::toInt)
@@ -15,5 +14,4 @@ fun main() {
         }
         time++
     }
-
 }

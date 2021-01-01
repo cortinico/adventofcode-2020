@@ -1,53 +1,51 @@
 fun main() {
-    val tiles = object {}.javaClass.getResource("input-20.txt").readText()
-        .split("\n\n")
-        .map {
-            val number = it.split("\n")[0]
-                .replace(":", "")
-                .replace("Tile ", "")
-                .toLong()
+    val tiles =
+        object {}.javaClass.getResource("input-20.txt").readText().split("\n\n").map {
+            val number = it.split("\n")[0].replace(":", "").replace("Tile ", "").toLong()
             val top = it.split("\n")[1]
             val bottom = it.split("\n").last()
-            val (left, right) = it.split("\n").drop(1)
-                .map {
-                    it.toCharArray().let { it.first() to it.last() }
-                }
+            val (left, right) = it
+                .split("\n")
+                .drop(1)
+                .map { it.toCharArray().let { it.first() to it.last() } }
                 .fold("" to "") { acc, pair ->
                     (acc.first + pair.first) to (acc.second + pair.second)
                 }
-            val body = it.split("\n").drop(1)
-                .map { it.replace("\n", "") }
-                .map { it.toCharArray() }
-                .toTypedArray()
+            val body =
+                it.split("\n")
+                    .drop(1)
+                    .map { it.replace("\n", "") }
+                    .map { it.toCharArray() }
+                    .toTypedArray()
             Tile(number, top, bottom, left, right, body)
         }
 
-    tiles.filter {
-        tiles.countNeighbor(it) == 2
-    }.fold(1L) { acc, tile ->
-        acc * tile.number
-    }.also(::println)
-
+    tiles
+        .filter { tiles.countNeighbor(it) == 2 }
+        .fold(1L) { acc, tile -> acc * tile.number }
+        .also(::println)
 }
 
 fun List<Tile>.countNeighbor(
     input: Tile,
     sides: List<String> = listOf(input.left, input.top, input.right, input.bottom)
 ): Int {
-    return sides.filter { regularSide ->
-        val reversedSide = regularSide.reversed()
-        this.any {
-            it.number != input.number && (
-                    it.top == regularSide ||
-                            it.top == reversedSide ||
-                            it.bottom == regularSide ||
-                            it.bottom == reversedSide ||
-                            it.left == regularSide ||
-                            it.left == reversedSide ||
-                            it.right == regularSide ||
-                            it.right == reversedSide)
+    return sides
+        .filter { regularSide ->
+            val reversedSide = regularSide.reversed()
+            this.any {
+                it.number != input.number &&
+                    (it.top == regularSide ||
+                        it.top == reversedSide ||
+                        it.bottom == regularSide ||
+                        it.bottom == reversedSide ||
+                        it.left == regularSide ||
+                        it.left == reversedSide ||
+                        it.right == regularSide ||
+                        it.right == reversedSide)
+            }
         }
-    }.count()
+        .count()
 }
 
 class Tile(
@@ -58,7 +56,8 @@ class Tile(
     var right: String,
     var body: Array<CharArray>
 ) {
-    private val n: Int get() = body.size
+    private val n: Int
+        get() = body.size
 
     fun rotateRight() {
         body.rotatedRight()

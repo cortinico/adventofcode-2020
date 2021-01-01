@@ -1,14 +1,9 @@
 fun main() {
-    val input = object {}.javaClass.getResource("input-19.txt").readText()
-        .split("\n\n")
+    val input = object {}.javaClass.getResource("input-19.txt").readText().split("\n\n")
 
-    val rules = input[0].split("\n")
-        .map { it.split(": ") }
-        .associateBy({it[0]}, {it[1]})
+    val rules = input[0].split("\n").map { it.split(": ") }.associateBy({ it[0] }, { it[1] })
 
-    input[1].split("\n")
-        .count { matches(it.toCharArray(), 0, rules, listOf("0")) }
-        .also(::println)
+    input[1].split("\n").count { matches(it.toCharArray(), 0, rules, listOf("0")) }.also(::println)
 }
 
 fun matches(
@@ -16,7 +11,7 @@ fun matches(
     idx: Int,
     map: Map<String, String>,
     remainingRules: List<String>
-) : Boolean {
+): Boolean {
     return when {
         idx >= input.size && remainingRules.isEmpty() -> true
         idx >= input.size && remainingRules.isNotEmpty() -> false
@@ -25,7 +20,7 @@ fun matches(
             val nextRule = map[remainingRules.first()]!!
             if (nextRule[0] == '"') {
                 if (nextRule[1] == input[idx]) {
-                    matches(input, idx+1, map, remainingRules.drop(1))
+                    matches(input, idx + 1, map, remainingRules.drop(1))
                 } else {
                     false
                 }

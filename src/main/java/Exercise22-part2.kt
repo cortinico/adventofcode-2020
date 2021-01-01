@@ -1,29 +1,28 @@
 fun main() {
-    object {}.javaClass.getResource("input-22.txt").readText()
+    object {}
+        .javaClass
+        .getResource("input-22.txt")
+        .readText()
         .split("\n\n")
-        .map {
-            it.split("\n")
-                .drop(1)
-                .map(String::toInt)
-                .toMutableList()
-        }.let {
-            playRecursiveCombat(it[0] to it[1])
-        }
+        .map { it.split("\n").drop(1).map(String::toInt).toMutableList() }
+        .let { playRecursiveCombat(it[0] to it[1]) }
         .toList()
         .first { it.isNotEmpty() }
         .reversed()
         .foldIndexed(0L) { index: Int, acc: Long, next: Int ->
             acc + (index.toLong() + 1L) * next.toLong()
-        }.also(::println)
+        }
+        .also(::println)
 }
 
-
-fun playRecursiveCombat(input: Pair<MutableList<Int>, MutableList<Int>>): Pair<MutableList<Int>, MutableList<Int>> {
+fun playRecursiveCombat(
+    input: Pair<MutableList<Int>, MutableList<Int>>
+): Pair<MutableList<Int>, MutableList<Int>> {
     val (deck1, deck2) = input
     val seenConfigurations = hashSetOf<String>()
     while (deck1.isNotEmpty() && deck2.isNotEmpty()) {
-        val top : List<Int>
-        val winner : MutableList<Int>
+        val top: List<Int>
+        val winner: MutableList<Int>
 
         val configuration = deck1.joinToString(",")
         if (configuration in seenConfigurations) {
@@ -37,7 +36,8 @@ fun playRecursiveCombat(input: Pair<MutableList<Int>, MutableList<Int>>): Pair<M
             if (deck1[0] <= deck1.size - 1 && deck2[0] <= deck2.size - 1) {
                 // Recursive Case
                 val subGameInput =
-                    deck1.drop(1).take(deck1[0]).toMutableList() to deck2.drop(1).take(deck2[0]).toMutableList()
+                    deck1.drop(1).take(deck1[0]).toMutableList() to
+                        deck2.drop(1).take(deck2[0]).toMutableList()
                 val (subDeck1, _) = playRecursiveCombat(subGameInput)
 
                 if (subDeck1.isEmpty()) {

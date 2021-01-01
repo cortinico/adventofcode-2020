@@ -2,7 +2,8 @@ fun main() {
     val input = object {}.javaClass.getResource("input-7.txt").readText().split("\n")
     val graph = mutableMapOf<String, MutableList<String>>()
 
-    input.map { it.replace(".", "") }
+    input
+        .map { it.replace(".", "") }
         .map { it.split("contain") }
         .map { (outside, inside) -> outside.replace("bags", "").trim() to inside.trim() }
         .onEach { (colorOutside, colorInsideList) ->
@@ -25,5 +26,3 @@ fun main() {
     }
     println(visited.size - 1)
 }
-
-

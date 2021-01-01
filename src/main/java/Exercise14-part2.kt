@@ -1,13 +1,10 @@
 fun main() {
-    val input = object {}.javaClass.getResource("input-14.txt").readText()
-        .split("\n")
-        .map { line ->
+    val input =
+        object {}.javaClass.getResource("input-14.txt").readText().split("\n").map { line ->
             if (line.startsWith("mask")) {
                 Mask(line.split(" ").last())
             } else {
-                line.replace(" = ", "").split('[', ']').let {
-                    Mem(it[1].toLong(), it[2].toLong())
-                }
+                line.replace(" = ", "").split('[', ']').let { Mem(it[1].toLong(), it[2].toLong()) }
             }
         }
     val memory = mutableMapOf<Long, Long>()
@@ -15,9 +12,7 @@ fun main() {
     input.forEach { op ->
         when (op) {
             is Mask -> mask = op.mask.toCharArray()
-            is Mem -> getAddresses(op.address, mask).forEach {
-                memory[it] = op.value
-            }
+            is Mem -> getAddresses(op.address, mask).forEach { memory[it] = op.value }
         }
     }
     println(memory.values.sum())
@@ -34,12 +29,6 @@ fun getAddresses(address: Long, mask: CharArray): List<Long> {
             else -> floatings.add(i)
         }
     }
-    floatings.forEach { bit ->
-        results.map {
-            it or (1L shl bit)
-        }.apply {
-            results.addAll(this)
-        }
-    }
+    floatings.forEach { bit -> results.map { it or (1L shl bit) }.apply { results.addAll(this) } }
     return results
 }

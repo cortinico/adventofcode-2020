@@ -1,5 +1,8 @@
 fun main() {
-    object {}.javaClass.getResource("input-18.txt").readText()
+    object {}
+        .javaClass
+        .getResource("input-18.txt")
+        .readText()
         .split("\n")
         .map { it.replace(" ", "") }
         .sumOf { evaluateImproved(it) }
@@ -28,22 +31,24 @@ fun resolveOperatorByIndex(input: String, idx: Int): String {
     while (start > 0 && input[start].isDigit()) start--
     while (end < input.length - 1 && input[end].isDigit()) end++
 
-    val numBefore: Long = if (start == 0) {
-        input.substring(0, idx)
-    } else {
-        input.substring(start + 1, idx)
-    }.toLong()
+    val numBefore: Long =
+        if (start == 0) {
+                input.substring(0, idx)
+            } else {
+                input.substring(start + 1, idx)
+            }
+            .toLong()
 
-    val numAfter: Long = if (end == input.length - 1) {
-        input.substring(idx + 1)
-    } else {
-        input.substring(idx + 1, end)
-    }.toLong()
+    val numAfter: Long =
+        if (end == input.length - 1) {
+                input.substring(idx + 1)
+            } else {
+                input.substring(idx + 1, end)
+            }
+            .toLong()
 
     val before = if (start == 0) "" else input.substring(0, start + 1)
     val center = if (input[idx] == '+') numBefore + numAfter else numBefore * numAfter
     val after = if (end == input.length - 1) "" else input.substring(end)
     return "$before$center$after"
 }
-
-

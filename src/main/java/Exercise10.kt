@@ -1,11 +1,17 @@
 fun main() {
-    val input = object {}.javaClass.getResource("input-10.txt").readText().split("\n")
-        .map(String::toLong)
-        .toMutableList().apply {
-            add(0)
-            sort()
-            add(last() + 3)
-        }
+    val input =
+        object {}
+            .javaClass
+            .getResource("input-10.txt")
+            .readText()
+            .split("\n")
+            .map(String::toLong)
+            .toMutableList()
+            .apply {
+                add(0)
+                sort()
+                add(last() + 3)
+            }
     var count1 = 0
     var count3 = 0
 
@@ -21,5 +27,3 @@ fun main() {
     }
     println(count1 * count3)
 }
-
-

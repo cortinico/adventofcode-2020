@@ -1,7 +1,12 @@
 fun main() {
-    object {}.javaClass.getResource("input-10.txt").readText().split("\n")
+    object {}
+        .javaClass
+        .getResource("input-10.txt")
+        .readText()
+        .split("\n")
         .map(String::toLong)
-        .toMutableList().apply {
+        .toMutableList()
+        .apply {
             add(0)
             sort()
             add(last() + 3)
@@ -23,6 +28,3 @@ fun countCombinations(list: List<Long>, index: Int): Long {
     map[index] = count
     return count
 }
-
-
-

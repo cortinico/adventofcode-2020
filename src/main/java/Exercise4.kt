@@ -1,7 +1,8 @@
 fun main() {
     val input = object {}.javaClass.getResource("input-4.txt").readText()
 
-    input.splitToSequence("\n\n")
+    input
+        .splitToSequence("\n\n")
         .filter {
             it.split(' ', '\n')
                 .map { item -> item.substring(0, item.indexOf(':')) }

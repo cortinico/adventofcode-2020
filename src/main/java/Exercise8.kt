@@ -7,7 +7,9 @@ fun main() {
     while (true) {
         val (op, num) = input[curr].split(" ")
         when (op) {
-            "nop" -> { curr++ }
+            "nop" -> {
+                curr++
+            }
             "acc" -> {
                 if (curr + 1 in visited) {
                     break
@@ -21,11 +23,9 @@ fun main() {
                     break
                 }
                 visited.add(curr)
-                curr+= num.toInt()
+                curr += num.toInt()
             }
         }
     }
     println(acc)
 }
-
-

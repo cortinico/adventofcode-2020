@@ -4,13 +4,16 @@ fun main() {
     val size = input[0].length - 1
     var current = 0
 
-    input.fold(0) { acc , line ->
-        val next = if (line[current] == '#') {
-            acc + 1
-        } else {
-            acc
+    input
+        .fold(0) { acc, line ->
+            val next =
+                if (line[current] == '#') {
+                    acc + 1
+                } else {
+                    acc
+                }
+            current = (current + 3) % (size + 1)
+            next
         }
-        current = (current+3) % (size+1)
-        next
-    }.also(::println)
+        .also(::println)
 }

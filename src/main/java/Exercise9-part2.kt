@@ -1,5 +1,6 @@
 fun main() {
-    val input = object {}.javaClass.getResource("input-9.txt").readText().split("\n").map { it.toLong() }
+    val input =
+        object {}.javaClass.getResource("input-9.txt").readText().split("\n").map { it.toLong() }
     val total = 20874512L
     var start = 0
     var end = 1
@@ -12,9 +13,5 @@ fun main() {
             sum > total -> sum -= input[start++]
         }
     }
-    input.subList(start, end + 1).apply {
-        println(minOrNull()!! + maxOrNull()!!)
-    }
+    input.subList(start, end + 1).apply { println(minOrNull()!! + maxOrNull()!!) }
 }
-
-

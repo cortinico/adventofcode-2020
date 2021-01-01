@@ -1,7 +1,11 @@
 fun main() {
-    val input = object {}.javaClass.getResource("input-23.txt").readText()
-        .toCharArray()
-        .map(Character::getNumericValue)
+    val input =
+        object {}
+            .javaClass
+            .getResource("input-23.txt")
+            .readText()
+            .toCharArray()
+            .map(Character::getNumericValue)
 
     val size = input.size
     val cups = Array(size + 1) { Cup(it) }
@@ -44,10 +48,12 @@ fun main() {
         current = currAfter
     }
     var t = cups[1]
-    (1 until size).fold("") { acc, _ ->
-        t = t.next
-        "$acc${t.num}"
-    }.also(::println)
+    (1 until size)
+        .fold("") { acc, _ ->
+            t = t.next
+            "$acc${t.num}"
+        }
+        .also(::println)
 }
 
 class Cup(val num: Int) {

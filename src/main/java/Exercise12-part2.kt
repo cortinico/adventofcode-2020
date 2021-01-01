@@ -1,9 +1,10 @@
 import kotlin.math.absoluteValue
 
 fun main() {
-    val input = object {}.javaClass.getResource("input-12.txt").readText()
-        .split("\n")
-        .map { it.first() to it.drop(1).toInt() }
+    val input =
+        object {}.javaClass.getResource("input-12.txt").readText().split("\n").map {
+            it.first() to it.drop(1).toInt()
+        }
     var x = 0
     var y = 0
 
@@ -34,11 +35,12 @@ fun rotateWaypoint(wayX: Int, wayY: Int, action: Char, value: Int): Pair<Int, In
     var degrees = value
     var newWay = wayX to wayY
     while (degrees != 0) {
-        newWay = if (action == 'R') {
-            newWay.second to -1 * newWay.first
-        } else {
-            -1 * newWay.second to newWay.first
-        }
+        newWay =
+            if (action == 'R') {
+                newWay.second to -1 * newWay.first
+            } else {
+                -1 * newWay.second to newWay.first
+            }
         degrees -= 90
     }
     return newWay

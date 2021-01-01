@@ -1,5 +1,6 @@
 fun main() {
-    val input = object {}.javaClass.getResource("input-8.txt").readText().split("\n").toMutableList()
+    val input =
+        object {}.javaClass.getResource("input-8.txt").readText().split("\n").toMutableList()
 
     fun flip(i: Int) {
         if (input[i].startsWith("jmp")) {
@@ -51,5 +52,3 @@ fun main() {
         flip(i)
     }
 }
-
-

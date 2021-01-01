@@ -1,7 +1,11 @@
 fun main() {
-    val input = object {}.javaClass.getResource("input-23.txt").readText()
-        .toCharArray()
-        .map(Character::getNumericValue)
+    val input =
+        object {}
+            .javaClass
+            .getResource("input-23.txt")
+            .readText()
+            .toCharArray()
+            .map(Character::getNumericValue)
 
     val size = 1_000_000
     val cups = Array(size + 1) { Cup(it) }
